@@ -18,3 +18,4 @@
 
 
 (db/some-method-in-db "test")
+(db/hello)

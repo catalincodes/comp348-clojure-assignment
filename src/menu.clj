@@ -12,10 +12,9 @@
 
 (defn -main [ ]
 	(println "Entering main program")
-	(display-menu)
-	(other-method-in-menu "This is a method in menu")
-	(db/some-method-in-db "this method is in db namespace"))
+	;(display-menu)
+	(db/read-file "data.txt"))
 
 
-(db/some-method-in-db "test")
-(db/hello)
+(-main)
+;(db/hello)

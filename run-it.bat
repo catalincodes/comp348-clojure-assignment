@@ -1,0 +1,1 @@
+lein exec ./src/menu.clj

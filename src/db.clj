@@ -12,7 +12,18 @@
 	"reads given file"
 	[filename]
 	(let [file-contents (slurp filename)]
-	(println file-contents)))
+		(def file-contents-split (str/split-lines file-contents))
+	)
+	;let's take the vector-of-data
+	(def entries [])
+	(def entries (conj entries
+		(str/split (get file-contents-split 0) #"\|")
+		
+		))
+	(println (get (get entries 0) 0) )
+	;(println vector-of-data)
+	;(println (count vector-of-data))
+)
 
 ;(defn read-file
 ;	[filename]

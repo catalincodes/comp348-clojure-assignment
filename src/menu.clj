@@ -13,7 +13,7 @@
 (defn -main [ ]
 	(println "Entering main program")
 	;(display-menu)
-	(db/read-file "data.txt"))
+	(db/read-file "cust.txt"))
 
 
 (-main)

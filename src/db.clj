@@ -1,43 +1,78 @@
 (ns db
 	(:require [clojure.string :as str]))
 
-(defn other-method-in-db [ ]
-	(println "Another method in the db namespace"))
+(defn print-entries-customer 
+	[entries]
+	;(println entries)
+	;(println (count entries) )
+	(def num-entries (count entries))
+	(loop [count 0]
+		(if (= count num-entries)	
+		(println "Listing complete!")
+		(do
+			(println (format "%s  | %-20s | %-30s | %-6s" 
+				(nth (nth (nth entries count) 0) 0 )  ;id
+				(nth (nth (nth entries count) 0) 1 )  ;name
+				(nth (nth (nth entries count) 0) 2 )  ;address
+				(nth (nth (nth entries count) 0) 3 )  ;phone number
+				))
+			(recur (inc count)))))
 
-(defn slurp-db-method [x]
-	(println "\nPrinting contents of" x)
-	(println (slurp x)))
+	)
 
-(defn read-file 
+(defn read-file-customer
 	"reads given file"
 	[filename]
 	(let [file-contents (slurp filename)]
 		(def file-contents-split (str/split-lines file-contents))
 	)
 	
-	(def entries [])
-	(println 
+	(def entries 
 		(for [line file-contents-split]
 			[(str/split line #"\|")]
-		) 
+		)
 	)
 
-	;let's take the vector-of-data
-	
-	;(def entries (conj entries
-	;	(str/split (get file-contents-split 0) #"\|")
-	;	
-	;	))
-	
-	;(println (get (get entries 0) 0) )
-	;(println vector-of-data)
-	;(println (count vector-of-data))
+	(println (format "Id | %-20s | %-30s | %-6s" "Name" "Address" "Phone#"))
+	(println "---+----------------------+--------------------------------+------------")
+
+	(print-entries-customer entries)
 )
 
-(defn some-method-in-db [x]
-	(println x)
-	(slurp-db-method "data.txt")
-	(other-method-in-db))
+(defn print-entries-product 
+	[entries]
+	;(println entries)
+	;(println (count entries) )
+	(def num-entries (count entries))
+	(loop [count 0]
+		(if (= count num-entries)	
+		(println "Listing complete!")
+		(do
+			(println (format "%s  | %-20s | %4s" 
+				(nth (nth (nth entries count) 0) 0 )  ;id
+				(nth (nth (nth entries count) 0) 1 )  ;name
+				(nth (nth (nth entries count) 0) 2 )  ;phone number
+				))
+			(recur (inc count)))))
 
-(defn hello []
-	(println "hello"))
+	)
+
+(defn read-file-product
+	"reads given file"
+	[filename]
+	(let [file-contents (slurp filename)]
+		(def file-contents-split (str/split-lines file-contents))
+	)
+	
+	(def entries 
+		(for [line file-contents-split]
+			[(str/split line #"\|")]
+		)
+	)
+
+	(println (format "Id | %-20s | %4s" "Name" "Price"))
+	(println "---+-------------------------------")
+
+	(print-entries-product entries)
+)
+
